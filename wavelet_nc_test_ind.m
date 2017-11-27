@@ -4,10 +4,10 @@ clc
 close all
 %%
 tic
+addpath('C:\Users\Jades\data\wavelet\')
 filename = '2016_totals_aggregated.nc';
 finfo = ncinfo('2016_totals_aggregated.nc');
 disp(finfo)
-
 %negative lon means west
 %positive lat means north
 data_struct.('time') = ncread(filename,'time');
@@ -30,13 +30,13 @@ u=1;v=2;
 uorv = input('Use u or v: ');
 if (uorv == u)
 disp('Using nu');
-data_struct.('u') = ncread(filename,'u',[I I2 1],[1 1 53]);
+data_struct.('u') = ncread(filename,'u',[I I2 1],[1 1 Inf]);
 U=squeeze(data_struct.u);
 wl = U';
 nwl = inpaint_nans(wl,3);
 elseif (uorv == v)
 disp('Using nv');
-data_struct.('v') = ncread(filename,'v',[I I2 1],[1 1 53]);
+data_struct.('v') = ncread(filename,'v',[I I2 1],[1 1 Inf]);
 V=squeeze(data_struct.v);
 wl = V';
 nwl = inpaint_nans(wl,3);
@@ -57,8 +57,8 @@ pwl(j) = NaN;
 pwl(pwl==0) = NaN;
 wl(wl==0) = NaN;
 
-plot(data_struct.time(1:r),pwl,'c.','markersize',20);
-plot(data_struct.time(1:r),wl,'k');
+plot(data_struct.time(1:o),pwl,'c.','markersize',20);
+plot(data_struct.time(1:o),wl,'k.');
 hold off
 
 dt = 1;
@@ -69,20 +69,20 @@ figure(2)
 clf
 colormap(jet)
 subplot(2,1,1)
-pcolor(data_struct.time(1:r),log10(F),data1)
+pcolor(data_struct.time(1:o),log10(F),data1)
 shading interp
 hold on
-plot(data_struct.time(1:r),log10(COI),'w','linewidth',3)
+plot(data_struct.time(1:o),log10(COI),'w','linewidth',3)
 hold off
 %set(gca,'ylim',[0.01 .15])
 colorbar
 datetick('x',31,'keepticks','keeplimits')
 title('Log(10) of frequency')
     subplot(2,1,2)
-    pcolor(data_struct.time(1:r),F,data1)
+    pcolor(data_struct.time(1:o),F,data1)
     shading interp
     hold on
-plot(data_struct.time(1:r),COI,'w','linewidth',3)
+plot(data_struct.time(1:o),COI,'w','linewidth',3)
     hold off
     set(gca,'ylim',[0.01 .15])
     colorbar
