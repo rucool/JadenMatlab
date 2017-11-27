@@ -1,0 +1,9 @@
+clc; 
+wdir = [45 90 90 45 360 335 360 270 335 270 335 335]; %angles in degrees
+% equivalent angles in radians
+% wdir = [0.7854    1.5708    1.5708    0.7854    6.2832 ...
+%           5.8469    6.2832    4.7124 ...
+%           5.8469    4.7124    5.8469    5.8469];
+knots = [6 6 8 3 3 9 6 8 9 10 14 12]; %radius coresponding magnitude,speed
+[a,b] = plotWinDirVel(wdir,knots, ...
+    {'Wind Direction and Strength ...(zero degrees is true North)'});
