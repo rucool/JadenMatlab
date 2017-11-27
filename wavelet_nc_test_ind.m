@@ -57,8 +57,18 @@ pwl(j) = NaN;
 pwl(pwl==0) = NaN;
 wl(wl==0) = NaN;
 
-plot(data_struct.time(1:o),pwl,'c.','markersize',20);
-plot(data_struct.time(1:o),wl,'k.');
+timestep = round(hours(seconds(data_struct.time)))';
+timespan = [];
+for ii = 1:length(timestep)
+timespan(ii) = addtodate(datenum('01/01/2016 00:00'), ii, 'hour');
+end
+dtime.start=min(timespan);
+dtime.end=max(timespan);
+
+plot(timespan,pwl,'c.','markersize',20);
+plot(timespan(1:o),wl,'k.');
+fig = gcf;
+format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',-80,60,10)
 hold off
 
 dt = 1;
@@ -69,7 +79,8 @@ figure(2)
 clf
 colormap(jet)
 subplot(2,1,1)
-pcolor(data_struct.time(1:o),log10(F),data1)
+pcolor(data_struct.time(1:o),F,data1)
+caxis([0 210])
 shading interp
 hold on
 plot(data_struct.time(1:o),log10(COI),'w','linewidth',3)
@@ -77,9 +88,11 @@ hold off
 %set(gca,'ylim',[0.01 .15])
 colorbar
 datetick('x',31,'keepticks','keeplimits')
-title('Log(10) of frequency')
+title('frequency wavelet')
     subplot(2,1,2)
     pcolor(data_struct.time(1:o),F,data1)
+    caxis([0 210])
+    format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',0,.5,.1)
     shading interp
     hold on
 plot(data_struct.time(1:o),COI,'w','linewidth',3)
