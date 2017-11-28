@@ -79,11 +79,11 @@ figure(2)
 clf
 colormap(jet)
 subplot(2,1,1)
-pcolor(timespan,F,data1)
+pcolor(timespan,F*24,data1)
 caxis([0 210])
 shading interp
 hold on
-plot(timespan,log10(COI),'w','linewidth',3)
+plot(timespan,COI*24,'w','linewidth',3)
 hold off
 %set(gca,'ylim',[0.01 .15])
 colorbar
@@ -92,13 +92,13 @@ colorbar
 datetick('x','mm/dd/yy','keepticks','keeplimits')
 title('frequency wavelet')
     subplot(2,1,2)
-    pcolor(timespan,F,data1)
+    pcolor(timespan,F*24,data1)
     caxis([0 210])
     shading interp
     hold on
-plot(timespan,COI,'w','linewidth',3)
+plot(timespan,COI*24,'w','linewidth',3)
     hold off
-    set(gca,'ylim',[0.01 .15])
+    set(gca,'ylim',[0.01 3])
     %format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',0,.45,.1)
     colorbar
     datetick('x','mm/dd/yy','keepticks','keeplimits')
