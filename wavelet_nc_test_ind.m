@@ -79,27 +79,30 @@ figure(2)
 clf
 colormap(jet)
 subplot(2,1,1)
-pcolor(data_struct.time(1:o),F,data1)
+pcolor(timespan,F,data1)
 caxis([0 210])
 shading interp
 hold on
-plot(data_struct.time(1:o),log10(COI),'w','linewidth',3)
+plot(timespan,log10(COI),'w','linewidth',3)
 hold off
 %set(gca,'ylim',[0.01 .15])
 colorbar
-datetick('x',31,'keepticks','keeplimits')
+%format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',0,.05,.01)
+%datetick('x',31,'keepticks','keeplimits')
+datetick('x','mm/dd/yy','keepticks','keeplimits')
 title('frequency wavelet')
     subplot(2,1,2)
-    pcolor(data_struct.time(1:o),F,data1)
+    pcolor(timespan,F,data1)
     caxis([0 210])
-    format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',0,.5,.1)
     shading interp
     hold on
-plot(data_struct.time(1:o),COI,'w','linewidth',3)
+plot(timespan,COI,'w','linewidth',3)
     hold off
     set(gca,'ylim',[0.01 .15])
+    %format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',0,.45,.1)
     colorbar
-    datetick('x',31,'keepticks','keeplimits')
+    datetick('x','mm/dd/yy','keepticks','keeplimits')
+    %datetick('x',31,'keepticks','keeplimits')
     title('Zoom, No Log(10)')
 
 % [PXX, FF]=pwelch(nu,hamming(2048),1024,2048,1/dt,'power');
