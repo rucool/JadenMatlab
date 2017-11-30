@@ -98,7 +98,7 @@ title('frequency wavelet')
     hold on
 plot(timespan,COI*24,'w','linewidth',3)
     hold off
-    set(gca,'ylim',[0.01 3])
+    set(gca,'ylim',[0.01 3.5])
     %format_axis(gca,dtime.start,dtime.end,30,30,'mm/dd',0,.45,.1)
     colorbar
     datetick('x','mm/dd/yy','keepticks','keeplimits')

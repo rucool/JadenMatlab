@@ -1,14 +1,14 @@
 clear 
 clc
 
-conf.print_path='C:/Users/Jaden Dicopoulos/COOL/waves/figures/AvgPwrSpecDaily/';
+conf.print_path='C:/Users/Jades/COOL/waves/figures/';
 
 year.num=2017;
 year.str=num2str(year.num);
 
-a=datenum(2017,06,01);
+a=datenum(2017,09,18);
 %dtime.end=datenum(2017,01,2);
-z = datenum(2017,06,2);    %END DATE
+z = datenum(2017,09,22);    %END DATE
 
 for k = a:z 
     dtime.start = k
